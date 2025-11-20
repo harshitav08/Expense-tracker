@@ -1,0 +1,33 @@
+<h2>Add Expense</h2>
+<form onsubmit="save(event)">
+    <input placeholder="Title" id="title" required><br><br>
+    <select id="category">
+        <option>Food</option>
+        <option>Travel</option>
+        <option>Shopping</option>
+        <option>Other</option>
+    </select><br><br>
+    <input type="number" id="amount" placeholder="Amount" required><br><br>
+    <input type="date" id="date" required><br><br>
+    <button>Add</button>
+</form>
+
+<script>
+function save(e) {
+    e.preventDefault();
+
+    let expense = {
+        title: title.value,
+        category: category.value,
+        amount: amount.value,
+        date: date.value
+    };
+
+    let expenses = JSON.parse(localStorage.getItem("expenses") || "[]");
+    expenses.push(expense);
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+
+    alert("Added!");
+    location.href = "index.html";
+}
+</script>
